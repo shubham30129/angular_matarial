@@ -1,0 +1,17 @@
+<form class="example-form" #f="ngForm" (ngSubmit)="addStudent(f)">
+  <mat-form-field class="example-full-width">
+    <input matInput placeholder="name" type="text" name="name"  #name="ngModel" ngModel>
+  </mat-form-field>
+  <mat-form-field>
+    <mat-select placeholder="Select State">
+      <mat-option *ngFor="let st of states" [value]="st.value">
+        {{ st.value }}
+      </mat-option>
+    </mat-select>
+  </mat-form-field>
+  <mat-form-field class="example-full-width">
+    <input matInput placeholder="mobile number" type="text" name="mobno" #mobno="ngModel" ngModel>
+  </mat-form-field>
+
+  <button type="submit" class="btn btn-primary" >Add</button>
+</form>

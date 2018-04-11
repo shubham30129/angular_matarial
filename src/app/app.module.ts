@@ -4,18 +4,23 @@ import { NgModule } from '@angular/core';
 
 
 
-import { AppComponent } from './app.component';
+import {AppComponent} from './app.component';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import {
+  MatAutocompleteModule,
   MatButtonModule, MatCheckboxModule, MatDialogModule, MatDrawerContainer, MatIconModule, MatInputModule, MatMenuModule,
   MatSelectModule, MatSidenavModule
 } from '@angular/material';
-import {FormsModule} from '@angular/forms';
+import { FormsModule} from '@angular/forms';
+import {StudentService} from './services/student.service';
+import {HttpClientModule} from '@angular/common/http';
+import { AddStudentComponent } from './modules/add-student/add-student.component';
 
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
+    AddStudentComponent
   ],
   imports: [
     FormsModule,
@@ -28,9 +33,18 @@ import {FormsModule} from '@angular/forms';
     MatSelectModule,
     MatMenuModule,
     MatSidenavModule,
-    MatDialogModule
+    MatDialogModule,
+    HttpClientModule,
+    MatAutocompleteModule
+
   ],
-  providers: [],
+  entryComponents: [
+    AddStudentComponent
+  ],
+  providers: [
+    StudentService
+  ],
   bootstrap: [AppComponent]
+
 })
 export class AppModule { }

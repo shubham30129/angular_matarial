@@ -70,32 +70,21 @@
   <table class="table">
     <tr>
       <td></td><td></td>
-      <td><button type="button" class="btn btn-primary" data-toggle="modal" data-target="#myModal">
-        Open modal
-      </button></td>
+      <td>
+        <!--<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#myModal">Open modal</button>-->
+        <button  class="btn btn-primary" mat-raised-button (click)="openDialog()">Open modal</button>
+      </td>
     </tr>
 
     <tr>
       <th>Firstname</th>
       <th>Lastname</th>
-      <th>Email</th>
     </tr>
 
     <tbody>
-    <tr>
-      <td>John</td>
-      <td>Doe</td>
-      <td>john@example.com</td>
-    </tr>
-    <tr>
-      <td>Mary</td>
-      <td>Moe</td>
-      <td>mary@example.com</td>
-    </tr>
-    <tr>
-      <td>July</td>
-      <td>Dooley</td>
-      <td>july@example.com</td>
+    <tr *ngFor="let i of studentData">
+      <td>{{ i.name }}</td>
+      <td>{{ i.mobno }}</td>
     </tr>
     </tbody>
   </table>
@@ -115,20 +104,21 @@
         <div class="modal-body">
           <form class="example-form" #f="ngForm" (ngSubmit)="addStudent(f)">
             <mat-form-field class="example-full-width">
-              <input matInput placeholder="name" name="name">
+              <input matInput placeholder="name" type="text" name="name"  #name="ngModel" ngModel>
+            </mat-form-field>
+            <mat-form-field>
+            <mat-select placeholder="Select State">
+              <mat-option>Gujarat</mat-option>
+              <mat-option>Rajasthan</mat-option>
+            </mat-select>
+            </mat-form-field>
+            <mat-form-field class="example-full-width">
+              <input matInput placeholder="mobile number" type="text" name="mobno" #mobno="ngModel" ngModel>
             </mat-form-field>
 
-            <mat-form-field class="example-full-width">
-              <input matInput placeholder="mobile number" name="mobno">
-            </mat-form-field>
+              <button type="submit" class="btn btn-primary" >Add</button>
           </form>
         </div>
-
-        <!-- Modal footer -->
-        <div class="modal-footer">
-          <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-        </div>
-
       </div>
     </div>
   </div>
