@@ -1,20 +1,168 @@
-<!--The content below is only a placeholder and can be replaced.-->
-<div style="text-align:center">
-  <h1>
-    Welcome to {{ title }}!
-  </h1>
-  <img width="300" alt="Angular Logo" src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAyNTAgMjUwIj4KICAgIDxwYXRoIGZpbGw9IiNERDAwMzEiIGQ9Ik0xMjUgMzBMMzEuOSA2My4ybDE0LjIgMTIzLjFMMTI1IDIzMGw3OC45LTQzLjcgMTQuMi0xMjMuMXoiIC8+CiAgICA8cGF0aCBmaWxsPSIjQzMwMDJGIiBkPSJNMTI1IDMwdjIyLjItLjFWMjMwbDc4LjktNDMuNyAxNC4yLTEyMy4xTDEyNSAzMHoiIC8+CiAgICA8cGF0aCAgZmlsbD0iI0ZGRkZGRiIgZD0iTTEyNSA1Mi4xTDY2LjggMTgyLjZoMjEuN2wxMS43LTI5LjJoNDkuNGwxMS43IDI5LjJIMTgzTDEyNSA1Mi4xem0xNyA4My4zaC0zNGwxNy00MC45IDE3IDQwLjl6IiAvPgogIDwvc3ZnPg==">
+<!-- Header -->
+<div class="container">
+    <div class="row">
+        <div class="col-md-4">
+          <div id="wrapper">
+            <div class="street-machine">
+              <h1 class="street">STREET</h1>
+            </div>
+          </div>
+        </div>
+      <div class="col-md-6">
+        <form class="example-form">
+          <mat-form-field class="example-full-width">
+            <input type="search" matInput placeholder="Favorite food">
+          </mat-form-field>
+        </form>
+      </div>
+      <div class="col-md-2">
+        <br>
+        <mat-icon matSuffix [matMenuTriggerFor]="cart">mode_shopping-cart</mat-icon>
+        <mat-menu #cart="matMenu">
+          <li mat-menu-item>Cart is Empty</li>
+        </mat-menu>
+      </div>
+    </div>
 </div>
-<h2>Here are some links to help you start: </h2>
-<ul>
-  <li>
-    <h2><a target="_blank" rel="noopener" href="https://angular.io/tutorial">Tour of Heroes</a></h2>
-  </li>
-  <li>
-    <h2><a target="_blank" rel="noopener" href="https://github.com/angular/angular-cli/wiki">CLI Documentation</a></h2>
-  </li>
-  <li>
-    <h2><a target="_blank" rel="noopener" href="https://blog.angular.io/">Angular blog</a></h2>
-  </li>
-</ul>
+<!-- Menu -->
+<div class="row" style="background-color: #378DBC; height: 50px;margin-top: 20px;">
+    <div class="container">
+      <button mat-button  class="menu">Home</button>
+      <button mat-button  class="menu">About</button>
+      <button mat-button [matMenuTriggerFor]="menu" class="menu">Menu</button>
+      <mat-menu #menu="matMenu">
+        <button mat-menu-item>Item 1</button>
+        <button mat-menu-item>Item 2</button>
+      </mat-menu>
 
+    </div>
+</div>
+
+<!-- Sidebar -->
+<!--
+ <div class="">
+      <span class="sidebar_heading" (click)="drawer.toggle()" >Sidebar</span><mat-icon matSuffix (click)="drawer.toggle()" >mode_menu</mat-icon>
+    </div>
+    <mat-drawer-container class="example-container" autosize>
+      <mat-drawer #drawer class="example-sidenav" mode="side">
+
+        <div class="mat-menu-content ng-trigger ng-trigger-fadeInItems" style="opacity: 1;">
+          <button _ngcontent-c140="" class="mat-menu-item" mat-menu-item="" role="menuitem" tabindex="0" aria-disabled="false">
+            <mat-icon _ngcontent-c140="" class="mat-icon material-icons" role="img" aria-hidden="true">dialpad</mat-icon>
+            <span _ngcontent-c140="">Redial</span>
+            <div class="mat-menu-ripple mat-ripple" matripple=""></div>
+          </button>
+          <button _ngcontent-c140="" class="mat-menu-item" disabled="true" mat-menu-item="" role="menuitem" tabindex="-1" aria-disabled="true">
+            <mat-icon _ngcontent-c140="" class="mat-icon material-icons" role="img" aria-hidden="true">voicemail</mat-icon>
+            <span _ngcontent-c140="">Check voicemail</span>
+            <div class="mat-menu-ripple mat-ripple" matripple=""></div>
+          </button>
+          <button _ngcontent-c140="" class="mat-menu-item" mat-menu-item="" role="menuitem" tabindex="0" aria-disabled="false">
+            <mat-icon _ngcontent-c140="" class="mat-icon material-icons" role="img" aria-hidden="true">notifications_off</mat-icon>
+            <span _ngcontent-c140="">Disable alerts</span>
+            <div class="mat-menu-ripple mat-ripple" matripple=""></div>
+          </button>
+        </div>
+      </mat-drawer>
+    </mat-drawer-container>
+-->
+<div class="container">
+  <table class="table">
+    <tr>
+      <td></td><td></td>
+      <td><button type="button" class="btn btn-primary" data-toggle="modal" data-target="#myModal">
+        Open modal
+      </button></td>
+    </tr>
+
+    <tr>
+      <th>Firstname</th>
+      <th>Lastname</th>
+      <th>Email</th>
+    </tr>
+
+    <tbody>
+    <tr>
+      <td>John</td>
+      <td>Doe</td>
+      <td>john@example.com</td>
+    </tr>
+    <tr>
+      <td>Mary</td>
+      <td>Moe</td>
+      <td>mary@example.com</td>
+    </tr>
+    <tr>
+      <td>July</td>
+      <td>Dooley</td>
+      <td>july@example.com</td>
+    </tr>
+    </tbody>
+  </table>
+
+  <!-- The Modal -->
+  <div class="modal fade" id="myModal">
+    <div class="modal-dialog modal-sm">
+      <div class="modal-content">
+
+        <!-- Modal Header -->
+        <div class="modal-header">
+          <h4 class="modal-title">Add Student</h4>
+          <button type="button" class="close" data-dismiss="modal">&times;</button>
+        </div>
+
+        <!-- Modal body -->
+        <div class="modal-body">
+          <form class="example-form" #f="ngForm" (ngSubmit)="addStudent(f)">
+            <mat-form-field class="example-full-width">
+              <input matInput placeholder="name" name="name">
+            </mat-form-field>
+
+            <mat-form-field class="example-full-width">
+              <input matInput placeholder="mobile number" name="mobno">
+            </mat-form-field>
+          </form>
+        </div>
+
+        <!-- Modal footer -->
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+        </div>
+
+      </div>
+    </div>
+  </div>
+</div>
+<!--
+<div class="example-container">
+
+
+  <form class="example-form">
+    <mat-form-field class="example-full-width">
+      <input matInput placeholder="Favorite food">
+    </mat-form-field><br>
+
+    <mat-form-field class="example-full-width">
+      <textarea matInput placeholder="Leave a comment" required></textarea>
+    </mat-form-field><br>
+    <mat-form-field class="example-full-width">
+      <span matPrefix>+1 &nbsp;</span>
+      <input type="tel" matInput placeholder="Telephone" required>
+
+      <mat-icon matSuffix>mode_edit</mat-icon>
+    </mat-form-field><br>
+    <mat-checkbox>Check me!</mat-checkbox>
+    <mat-form-field>
+      <mat-select placeholder="Favorite food" multiple>
+        <mat-option *ngFor="let food of foods" [value]="food.value">
+          {{ food.viewValue }}
+        </mat-option>
+      </mat-select>
+    </mat-form-field>
+    <button mat-button class="btn btn-primary">Click me!</button>
+  </form>
+
+
+</div>
+
+-->
