@@ -1,2 +1,157 @@
 git remote add origin https://github.com/shubham30129/angular_matarial.git
 git push -u origin matarial
+
+https://blog.thoughtram.io/angular/2017/11/13/easy-dialogs-with-angular-material.html#creating-dialogs-with-matdialog
+
+-----------  html -----------
+<div class="container">
+  <h1>Registration {{ userLoged }}</h1>
+  <button (click)="logut()">Logut</button>
+  <table class="table table-hover">
+    <tr>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th><button type="button" class="btn btn-primary" data-toggle="modal" data-target="#myModal">
+        Open modal
+      </button></th>
+    </tr>
+    <tr>
+      <th>Index</th>
+      <th>Fname</th>
+      <th>Lname</th>
+      <th>Img</th>
+      <th>Edit</th>
+      <th>Delete</th>
+    </tr>
+    <tr *ngFor="let i of myservice.data; let j=index">
+      <td>{{j+1}}</td>
+      <td>{{i.fname}}</td>
+      <td>{{i.lname}}</td>
+      <td><img src='data:image/jpeg;base64,{{i.img}}' height="100" width="100" class="img-thumbnail"/></td>
+      <td><a >Edit</a></td>
+      <td><a >Delete</a></td>
+    </tr>
+  </table>
+
+  <!-- The Modal -->
+  <div class="modal fade" id="myModal">
+    <div class="modal-dialog">
+      <div class="modal-content">
+
+        <!-- Modal Header -->
+        <div class="modal-header">
+          <h4 class="modal-title">Modal Heading</h4>
+          <button type="button" class="close" data-dismiss="modal">&times;</button>
+        </div>
+        <!-- Model body -->
+        <div class="modal-body">
+          <form  #f="ngForm" (ngSubmit)="insert(f)">
+            <div class="form-group">
+              <label>First Name:</label>
+              <input type="text" class="form-control" id="fname" name="fname" #fname="ngModel" ngModel>
+            </div>
+            <div class="form-group">
+              <label >Last Name:</label>
+              <input type="text" class="form-control" id="lanme" name="lname" #lname="ngModel" ngModel>
+            </div>
+            <div class="form-group">
+              <label for="img">Profile Pic:</label>
+              <input type="file" class="form-control" id="img" name="img" #img="ngModel" ngModel (change)="onFileChange($event)" #fileInput>
+            </div>
+            <button type="submit" class="btn btn-primary">Submit</button>
+          </form>
+        </div>
+
+        <!-- Modal footer -->
+        <div class="modal-footer">
+          <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+        </div>
+
+      </div>
+    </div>
+  </div>
+  <!-- Modal body -->
+  <!--<div class="modal-body">
+    <form  #f="ngForm" (ngSubmit)="insert(f)">
+      <div class="form-group">
+        <label>First Name:</label>
+        <input type="text" class="form-control" id="fname" name="fname" #fname="ngModel" ngModel>
+      </div>
+      <div class="form-group">
+        <label >Last Name:</label>
+        <input type="text" class="form-control" id="lanme" name="lname" #lname="ngModel" ngModel>
+      </div>
+      <div class="form-group">
+        <label for="img">Profile Pic:</label>
+        <input type="file" class="form-control" id="img" name="img" #img="ngModel" ngModel (change)="onFileChange($event)" #fileInput>
+      </div>
+      <button type="submit" class="btn btn-primary">Submit</button>
+    </form>
+  </div>
+
+  &lt;!&ndash; Modal footer &ndash;&gt;
+  <div class="modal-footer">
+    <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+  </div>
+
+</div>
+</div>
+</div>-->
+  <!-- The Modal End-->
+</div>
+
+<router-outlet></router-outlet>
+
+
+--------- ts ----------------
+ onFileChange(event) {
+    const reader = new FileReader();
+    if (event.target.files.length > 0) {
+      const file = event.target.files[0];
+      console.log(file);
+      reader.readAsDataURL(file);
+      reader.onload = () => {
+        this.img = {
+          fileName: file.name,
+          fileType: file.type,
+          value: reader.result.split(',')[1]
+        };
+        console.log(this.img.value);
+      }
+    }
+  }
+  insert(f) {
+    console.log(f) ;
+    console.log(f.value.fname);
+    console.log(f.value.lname);
+    console.log(this.img.value.name);
+    const img1: string = this.img.value;
+    console.log(img1);
+    this.myservice.insertData({'fname': f.value.fname , 'lname': f.value.lname , 'img': img1 });
+    f.resetForm();
+
+  }
+  logut(){
+    localStorage.removeItem('username');
+    this.router.navigate(['/login']);
+  }
+  ----------- login ts ---------
+  loginUser(e) {
+      e.preventDefault();
+      const username = e.target.elements[0].value;
+      const password = e.target.elements[1].value;
+      console.log(username , password );
+      if (username == 'admin' && password == 'admin') {
+        this.router.navigate(['registration']);
+        localStorage.setItem('username', username);
+
+      }
+      else {
+        this.msg = 'Invalid Email or Password ';
+      }
+      e.target.elements[0].value = '';
+      e.target.elements[1].value = '';
+    }
